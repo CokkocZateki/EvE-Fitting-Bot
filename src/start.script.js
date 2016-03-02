@@ -5,7 +5,7 @@
 
 "use strict";
 
-var port = 443; // default
+var port = 80; // default
 if(typeof process.env.PORT != "undefined") // Cloud9 environement
     port = process.env.PORT;
 
