@@ -54,6 +54,17 @@ The list below describes briefly each configuration directive.
 * `crest_host` : hostname of CREST server (that's currently "crest-tq.eveonline.com" and should not change).
 
 
+## Improvements
+
+Potential improvements (totally not a roadmap).
+* Add more commands (example: ship info, map...).
+* Identify fittings by name instead of ID.
+* Improve formatting and readability.
+* Add an index page.
+* Automate Discord account creation.
+* ...
+
+
 ## Copyright Notice
 
 EVE Online and the EVE logo are the registered trademarks of CCP hf. All rights are reserved worldwide.
