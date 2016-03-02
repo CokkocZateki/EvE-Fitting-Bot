@@ -1,0 +1,14 @@
+{
+    "_description": "Configuration file for EvE FItting Bot. Make sure to change at least the 'CHANGE_ME' parameters.",
+    "session_secret": "CHANGE_ME",
+    "discord_username": "eve.fitting.bot@gmail.com",
+    "discord_password": "CHANGE_ME",
+    "local_protocol": "https",
+    "local_hostname": "sandbox-c9-hiryus.c9.io",
+    "hash_salt": "CHANGE_ME",
+    "app_client_id": "CHANGE_ME",
+    "app_client_secret": "CHANGE_ME",
+    "command_prefix": ".efb",
+    "sso_host": "login.eveonline.com",
+    "crest_host": "crest-tq.eveonline.com"
+}
