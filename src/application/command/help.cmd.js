@@ -41,8 +41,8 @@ HelpCommand.prototype.getHelp = function(message) {
         "**Eve Fitting Bot Usage**",
         "`" + this.bot.msgPrefix + " help`" + " - show this message,",
         "`" + this.bot.msgPrefix + " ping`" + " - reply \"pong\" (test command),",
-        "`" + this.bot.msgPrefix + " list fits`" + " - list all character fits,",
-        "`" + this.bot.msgPrefix + " get <id>`" + " - return @fit_name contents.",
+        "`" + this.bot.msgPrefix + " list`" + " - list all character fits,",
+        "`" + this.bot.msgPrefix + " show <id>`" + " - return @fit_name contents.",
         ].join("\n");
 };
 

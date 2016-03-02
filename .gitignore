@@ -37,5 +37,5 @@ config.json
 
 # Temporary files
 database.json
-sessions/*
-log/*
+./src/sessions/*
+./src/log/*

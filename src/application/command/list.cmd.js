@@ -51,7 +51,7 @@ ListCommand.prototype.requestAuthentication = function(message) {
     var self = this;
     var user = (new User()).loadDiscordId(message.author.id);
     return Q().all([
-        self.client.sendMessage( message.author, "please use the following link to register. \n" + user.getRegisterLink() ), 
+        self.bot.client.sendMessage( message.author, "please use the following link to register. \n" + user.getRegisterLink() ), 
         self.bot.client.reply( message, "you are not registered, please follow the link sent by private message." )
     ]);
 };
