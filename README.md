@@ -13,7 +13,7 @@ The project is more a Proof Of Concept made for EvE Online API Challenge (https:
 1. Create an account on https://developers.eveonline.com with the "CharacterFittingRead" permission.
   * Callback URL is `https://<your_host>/sso/auth_response/`.
 2. Install Node and NPM (for example, `apt-get install nodejs npm`).
-3. Make sure node version is at least 0.12.1 by running `node --version`.
+3. Make sure node version is at least **0.12.1** by running `node --version`.
 4. Clone repository: `git clone https://github.com/ShadowRyanis/EvE-Fitting-Bot.git`.
 5. Install dependencies using npm: `npm install`.
 6. Create a Discord account for the Bot and join your server(s) (the program does not do it alone at the moment).
@@ -24,17 +24,16 @@ The project is more a Proof Of Concept made for EvE Online API Challenge (https:
 ## Start
 
 Running the server is pretty simple:
-* Run `node ./src/start.script.js`.
+* Run `node ./src/start.script.js` in your favorite shell.
 * You should see an output similar to:
 
-```shell
+```
 node ./src/start.script.js
 info: HTTP server started on port 8080.
 info: Bot has loaded 4 command(s).
 info: Bot ready, serving in 14 channels.
 ```
 
-Remarks:
 * You may want to edit start.script.js if you are not using port 80.
 * It is strongly recommanded to use an HTTPS proxy in front of your server or switch to HTTPS (this last action probably requires code modifications).
 
@@ -91,12 +90,13 @@ Discord ID         | EvE Character ID | OAuth access\_token | OAuth refresh\_tok
 
 Potential improvements (totally not a roadmap):
 * [x] Basic bot functionalities with `list` and `show` commands.
-* [ ] Add automatic tests.
-* [ ] Add more commands (example: ship info, map...).
-* [ ] Identify fittings by name instead of ID.
-* [ ] Improve formatting and readability.
-* [ ] Add an index page.
-* [ ] Automate Discord account creation.
+* [ ] (Quality) Add automatic tests.
+* [ ] (Conformity) Change answer behaviour to remove mentions (Discord bots best practices).
+* [ ] (Ergonomy) Identify fittings by name instead of ID.
+* [ ] (Ergonomy) Improve formatting and readability.
+* [ ] (Ergonomy) Add an index page.
+* [ ] (Ergonomy) Automate Discord account creation.
+* [ ] (Fonctionality) Add more commands (example: ship info, map...).
 
 
 ## Contributing
