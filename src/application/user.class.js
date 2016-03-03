@@ -2,7 +2,6 @@
 *   User class
 *   Storage class for user data.
 *   Also manage connection between local, Discord and EvE.
-*   See authentication_flows.txt for a step-by-step description of authentication.
 */
 
 "use strict";
