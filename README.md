@@ -1,32 +1,31 @@
 # EvE-Fitting-Bot
 
 
-## What is it ?
-
-### Description
+## Description
 
 EvE Fitting Bot is a bot for Discord able (at the moment) to retrive player fittings and display them.
 
 The project is more a Proof Of Concept made for EvE Online API Challenge (https://developers.eveonline.com/blog/article/the-eve-online-api-challenge). But it relies on pretty solid bases and could be easily improved up to a complete and useful bot.
 
+<center>
 |                        A few screenshots                        |
 |:---------------------------------------------------------------:|
 | ![efb help](http://img4.hostingpics.net/pics/302549efbhelp.png) |
 | ![efb list](http://img4.hostingpics.net/pics/465930efblist.png) |
 | ![efb show](http://img4.hostingpics.net/pics/581883efbshow.png) |
+</center>
 
-### Example
+
+## Example
 
 You can see a working example by joining https://discord.gg/0rZvLaS6EJ4DbUPO (you don't even need a Discord account for it !).
 
 For example, try to type `.efb help`.
 
 _If nothing happens, or for questions, you can PM "Shadow" from the above Discord server or drop a mail to `ryanis.shadow[dot]gmail.com`._
-  
-  
-## How to use it ?
 
-###  Install
+
+##  Install
 
 1. Create an account on https://developers.eveonline.com with the "CharacterFittingRead" permission.
   * Callback URL is `https://<your_host>/sso/auth_response/`.
@@ -37,7 +36,8 @@ _If nothing happens, or for questions, you can PM "Shadow" from the above Discor
 6. Create a Discord account for the Bot and join your server(s) (the program does not do it alone at the moment).
 7. Make sure to setup configuration file (rename config.json.example to config.json and change values).
 
-### Start
+
+## Start
 
 Running the server is pretty simple:
 * Run `node ./src/start.script.js` in your favorite shell.
@@ -53,7 +53,8 @@ info: Bot ready, serving in 14 channels.
 * You may want to edit start.script.js if you are not using port 80.
 * It is strongly recommanded to use an HTTPS proxy in front of your server or switch to HTTPS (this last action probably requires code modifications).
 
-### Configuration
+
+## Configuration
 
 The list below describes briefly each configuration directive.
 * `session_secret` : password used internally to encrypt session data. Just set something random here.
@@ -69,7 +70,7 @@ The list below describes briefly each configuration directive.
 * `crest_host` : hostname of CREST server (that's currently "crest-tq.eveonline.com" and should not change).
 
 
-### How registration works
+## How registration works
 
 In order to retreive player fittings from CREST API, the application (the "Bot") needs to link Discord ID with EvE Online ID.
 This is done in the following way:
@@ -93,9 +94,7 @@ Discord ID         | EvE Character ID | OAuth access\_token | OAuth refresh\_tok
 147810001268645011 | null             | null                | null                 | null              |
 
 
-## Going further
-
-### Improvements
+## Improvements
 
 Potential improvements (totally not a roadmap):
 * [x] Basic bot functionalities with `list` and `show` commands.
@@ -109,12 +108,12 @@ Potential improvements (totally not a roadmap):
 * [ ] Automate Discord account creation (ergonomy).
 * [ ] Add more commands like ship info, map... (fonctionality).
 
-### Contributing
+
+## Contributing
 
 * Feel free to clone, copy or edit this project.
 * Bugs should be reported on GitHub using the pretty standard "issues" fonction.
 * Pull requests are welcomed.
-
 
 
 ## Copyright Notice
