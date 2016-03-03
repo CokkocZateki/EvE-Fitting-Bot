@@ -102,6 +102,7 @@ Potential improvements (totally not a roadmap):
 ## Contributing
 
 * Feel free to clone, copy or edit this project.
+* Bugs should be reported on GitHub using the pretty standard "issues" fonction.
 * Pull requests are welcomed.
 
 
