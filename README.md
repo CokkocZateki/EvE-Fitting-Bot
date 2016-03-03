@@ -50,7 +50,7 @@ info: Bot ready, serving in 14 channels.
 
 * You may want to edit `start.script.js` if you are not using port 80.
 * It is strongly recommanded to use an HTTPS proxy in front of your server or configure HTTPS (check "https\_ppk" and "https\_cert" configuration values).
-* **Warning**: HTTPS server has not been tested and may not work, at all.
+  * **Warning**: HTTPS server has not been tested and may not work, at all.
 
 
 ## Configuration
@@ -69,8 +69,8 @@ The list below describes briefly each configuration directive.
 * `crest_host` : hostname of CREST server (that's currently "crest-tq.eveonline.com" and should not change).
 * `https_ppk` : path to private key in .pem format (for HTTPS server).
 * `https_cert` : path to public certificate in .crt format(for HTTPS server).
-  Server will listen on HTTPS only if bothvalues are set. 
-  **Warning**: HTTPS server has not been tested and may not work, at all.
+  * Server will listen on HTTPS only if bothvalues are set. 
+  * **Warning**: HTTPS server has not been tested and may not work, at all.
 
 
 ## How registration works
