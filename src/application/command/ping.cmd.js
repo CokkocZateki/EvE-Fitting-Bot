@@ -17,6 +17,7 @@ var PingCommand = function() {
 /*
 *   parse()
 *   Parse @message and do stuff.
+*   Return command name as string.
 */
 PingCommand.prototype.init = function(bot) {
     this.bot = bot;
@@ -26,6 +27,7 @@ PingCommand.prototype.init = function(bot) {
 /*
 *   run()
 *   Answer to the command.
+*   Return a promise.
 */
 PingCommand.prototype.run = function(message) {
     return this.bot.client.reply(message, "pong")

@@ -3,8 +3,8 @@
 *   Implements the "help" command.
 */
 
-"use strict";
 
+"use strict";
 
 
 /*
@@ -17,6 +17,7 @@ var HelpCommand = function() {
 /*
 *   parse()
 *   Parse @message and do stuff.
+*   Return the command name as string.
 */
 HelpCommand.prototype.init = function(bot) {
     this.bot = bot;
@@ -26,6 +27,7 @@ HelpCommand.prototype.init = function(bot) {
 /*
 *   run()
 *   Answer to the command.
+*   Return a promise.
 */
 HelpCommand.prototype.run = function(message) {
     return this.bot.client.reply(message, this.getHelp())

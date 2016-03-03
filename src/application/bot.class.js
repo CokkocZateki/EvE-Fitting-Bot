@@ -22,7 +22,7 @@ var config  = require(__dirname+"/utils/config.single.js");
 var Bot = function() {
     // Discord client (aka. "bot")
     this.client = null;
-    // Messages prefix
+    // Messages prefix (if messages does not begin by this prefix, they will be ignored)
     this.msgPrefix = config.get("command_prefix") || ".efb";
     // Available commands handlers
     this.commands = {};
@@ -31,6 +31,7 @@ var Bot = function() {
 /*
 *   init()
 *   Create Discord client (the "bot") and initialize behaviour.
+*   Return a promise.
 */
 Bot.prototype.init = function() {
     var self = this;
@@ -45,7 +46,7 @@ Bot.prototype.init = function() {
     self.client.on("ready", function () {
     	winston.loggers.get("main").info("Bot ready, serving in " + self.client.channels.length + " channels.");
     });
-
+    
     // Disconection
     self.client.on("disconnected", function () {
     	winston.loggers.get("main").info("Bot disconnected.");
@@ -62,22 +63,25 @@ Bot.prototype.init = function() {
 
 /*
 *   loadCmd()
-*   Look in ./command/ and load all commands from files.
+*   Look in ./command/ directory and load all commands from files.
+*   Return a promise.
 */
 Bot.prototype.loadCmd = function() {
     var self = this; var nbCmd = 0;
-    // Read directory
+    // Read directory and iterate on each file
     return Q.denodeify(fs.readdir)(__dirname+"/command").then(function(files) {
         files.map(function(fileName) {
             if(fileName.substr(-7) == ".cmd.js") { // only parse .cmd.js files
                 try {
-                    // Instanciate the command and register it
+                    // Instanciate the command class and save the object
                     var Command = require(__dirname+"/command/"+fileName);
                     var cmd = new Command();
                     var name = cmd.init(self);
                     self.commands[name] = cmd;
+                    // Keep trace of the number of loaded comands for logging purpose
                     nbCmd++;
                 } catch(err) {
+                    // Log an error if parsing a file fails, but don't exit
     	            winston.loggers.get("main").error("Error parsing command file "+fileName+":\n"+err.stack);
                 }
             }
@@ -89,6 +93,7 @@ Bot.prototype.loadCmd = function() {
 /*
 *   parse()
 *   Parse @message and do stuff.
+*   Return a promise.
 */
 Bot.prototype.parse = function(message) {
     // Split command into argumetns

@@ -32,20 +32,24 @@ ListCommand.prototype.init = function(bot) {
 /*
 *   run()
 *   Answer to the command.
+*   Return a promise.
 */
 ListCommand.prototype.run = function(message) {
     // Check if user is authenticated
     var user = (new User()).loadDiscordId(message.author.id);
     if(user.isAuthenticated()) {
+        // If authenticated, load fits
         return this.loadFits(message);
     } else {
+        // Else, ask for authentication
         return this.requestAuthentication(message);
     }
 };
 
 /*
-*   run()
-*   Answer to the command.
+*   requestAuthentication()
+*   Send a private message to Discord client with instsructions for registering.
+*   Return a promise.
 */
 ListCommand.prototype.requestAuthentication = function(message) {
     var self = this;
@@ -59,6 +63,7 @@ ListCommand.prototype.requestAuthentication = function(message) {
 /*
 *   loadFits()
 *   Return the list of fits, as requested.
+*   Return a promise.
 */
 ListCommand.prototype.loadFits = function(message) {
     var self = this;

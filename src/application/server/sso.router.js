@@ -43,7 +43,7 @@ router.get("/auth_response/", function(req, res, next) {
         req.session.oauth = {
             access_token: data.access_token,
             refresh_token: data.refresh_token,
-            expire: (new Date()).getTime() + data.expires_in
+            expire: (new Date()).getTime() + (data.expires_in*1000) // expire is in seconds while timestamp is in milliseconds
         };
         // Redirect
         if(req.session.redirectUrl) {

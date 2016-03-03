@@ -1,5 +1,5 @@
 /*
-*   Config class
+*   Config singleton
 *   Read and parse configuration file.
 */
 
@@ -14,7 +14,7 @@ var Q  = require("q");
 
 
 /*
-*   Server constructor
+*   Config constructor
 */
 var Config = function() {
     this.cfgFile = __dirname+"/../config.json";
@@ -24,14 +24,17 @@ var Config = function() {
 /*
 *   load()
 *   Read and parse configuraitçon file.
+*   Return a promise.
 */
 Config.prototype.load = function(fileName) {
     var self = this;
     if(self.data == null) {
+        // If data was not loaded, do it now
         return Q.denodeify(fs.readFile)(this.cfgFile, "utf8").then(function(data) {
             return self.data = JSON.parse(data);
         });
     } else {
+        // Else, just return preivously loaded data
         return Q(self.dat);
     }
 };
@@ -39,6 +42,7 @@ Config.prototype.load = function(fileName) {
 /*
 *   get()
 *   Return the value of requested @parameter or null if it does ot exist.
+*   Configuration must be loaded before.
 */
 Config.prototype.get = function(parameter) {
     if(this.data === null) throw new Error("Configuration not loaded");

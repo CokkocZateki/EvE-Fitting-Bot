@@ -47,7 +47,7 @@ Server.prototype.listen = function(port) {
         cookie: { maxAge: 60000 }
     }));
     
-    // Remove requests from Discord (who trie to get a screenshot of each posted link).
+    // Remove requests from Discord (who tries to get a screenshot of each posted link).
     app.use(function(req, res, next) {
        if(req.headers["user-agent"].match(/Discordbot/i)) {
             winston.loggers.get("main").info("Discarding Discord HTTP request.", {ip: req.ip, uri: req.originalUrl});

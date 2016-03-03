@@ -24,7 +24,7 @@ var SSO = function() {
 
 /*
 *   getOAtuthState()
-*   Return the Oauth state parameter based on a clientSecret.
+*   Return the Oauth state parameter based on a clientSecret (as string).
 */
 SSO.prototype.getOAtuthState = function(clientSecret, state, code) {
     var salt = config.get("hash_salt") || "re6gv56zsvg6vgzspok";
@@ -34,7 +34,8 @@ SSO.prototype.getOAtuthState = function(clientSecret, state, code) {
 
 /*
 *   getAuthUrl()
-*   Start the web server on given port (@port) and setup HTTP routes.
+*   Return the redirectUrl parameter of OAuth authentication (as string).
+*   After the user has authenticated with EvE SSO, he/she will be redirected to this URL.
 */
 SSO.prototype.getAuthUrl = function(clientSecret) {
     // First, hash the clietn secret because it will be leaked in the URL
@@ -56,7 +57,8 @@ SSO.prototype.getAuthUrl = function(clientSecret) {
 
 /*
 *   validate()
-*   Validate state and authorization code.
+*   Validate OAuth "state" parameter and "authorization_code".
+*   Return a promise.
 */
 SSO.prototype.validate = function(clientSecret, state, code) {
     // 1 - Validate state parameter
@@ -75,17 +77,17 @@ SSO.prototype.validate = function(clientSecret, state, code) {
         form: {
             "grant_type": "authorization_code",
             "code": code
-        },
-        resolveWithFullResponse: true // Request full response and not only the body
-    }).then(function(response) {
-        var data = JSON.parse(response.body);
+        }
+    }).then(function(body) {
+        var data = JSON.parse(body);
         return data;
     });
 };
 
 /*
 *   refresh()
-*   Get a new access_token using stored refresh_token.
+*   Get a new access_token using refresh_token.
+*   Return a promise.
 */
 SSO.prototype.refresh = function(refresh_token) {
     return request({
@@ -99,10 +101,9 @@ SSO.prototype.refresh = function(refresh_token) {
         form: {
             "grant_type": "refresh_token",
             "refresh_token": refresh_token
-        },
-        resolveWithFullResponse: true // Request full response and not only the body
-    }).then(function(response) {
-        return JSON.parse(response.body);
+        }
+    }).then(function(body) {
+        return JSON.parse(body);
     });
 };
 

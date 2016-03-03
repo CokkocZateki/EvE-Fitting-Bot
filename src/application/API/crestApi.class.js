@@ -1,6 +1,6 @@
 /*
 *   CrestAPI class
-*   TODO
+*   CREST API wrapper (clearly not complete).
 */
 
 "use strict";
@@ -29,6 +29,7 @@ var CrestAPI = function() {
 *   getOAtuthState()
 *   Return the Oauth state parameter based on a clientSecret.
 *   Attention, this method does not cache results (as character id is not known).
+*   Return a promise.
 */
 CrestAPI.prototype.getCharacterData = function(authorizationCode) {
     return request({
@@ -59,6 +60,7 @@ CrestAPI.prototype.fromCache = function(path) {
 /*
 *   toCache()
 *   Save data in cache.
+*   Return a promise.
 */
 CrestAPI.prototype.toCache = function(path, data, cacheLength) {
     return db.set(path, {
@@ -70,9 +72,11 @@ CrestAPI.prototype.toCache = function(path, data, cacheLength) {
 /*
 *   request()
 *   Request data from CREST API.
+*   Return a promise.
 */
 CrestAPI.prototype.request = function(oauth, endpoint) {
     var self = this;
+    // Send a first request with access_token
     return self.sendRequest(oauth, endpoint).catch(function(err) {
         if(err.message.match(/Unauthorized/i)) {
             // Authentication denied, access_token is probably outdated
@@ -96,6 +100,7 @@ CrestAPI.prototype.request = function(oauth, endpoint) {
 /*
 *   sendRequest()
 *   Send a GET request to CREST.
+*   Return a promise.
 */
 CrestAPI.prototype.sendRequest = function(oauth, endpoint) {
     return request({
@@ -115,9 +120,9 @@ CrestAPI.prototype.sendRequest = function(oauth, endpoint) {
 /*
 *   getCharFits()
 *   Retrieve and return character fits.
+*   Return a promise.
 */
 CrestAPI.prototype.getCharFits = function(oauth, charId) {
-// CrestAPI.prototype.getCharFits = function(authorizationCode, charId) {
     var CACHE_LENGTH = 60; // seconds
     var self = this;
     // Try to load from cache first
@@ -126,7 +131,7 @@ CrestAPI.prototype.getCharFits = function(oauth, charId) {
         winston.loggers.get("main").info("Loaded "+data.items.length+" fits from cache for "+charId+".");
         return Q(data);
     }
-    // Else, request data
+    // Else, request data from CREST
     return this.request(oauth, "/characters/"+charId+"/fittings/").then(function(data) {
         winston.loggers.get("main").info("Loaded "+data.items.length+" fits from CREST for "+charId+".");
         self.toCache("crest.fits."+charId, data, CACHE_LENGTH);

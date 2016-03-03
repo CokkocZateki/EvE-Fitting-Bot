@@ -1,6 +1,6 @@
 /*
 *   Application class
-*   TODO
+*   Initialize and start services.
 */
 
 "use strict";
@@ -11,9 +11,9 @@
 var Q       = require("q");
 var winston = require("winston");
 var db      = require("json-db-lite");
-var Server  = require("./server/server.class.js");
-var config  = require("./utils/config.single.js");
-var Bot     = require("./bot.class.js");
+var Server  = require(__dirname+"/server/server.class.js");
+var config  = require(__dirname+"/utils/config.single.js");
+var Bot     = require(__dirname+"/bot.class.js");
 
 
 
@@ -30,6 +30,7 @@ var Application = function() {
 /*
 *   start()
 *   Initialisa and start application.
+*   Return a promise.
 */
 Application.prototype.start = function(httpPort) {
     var self = this;

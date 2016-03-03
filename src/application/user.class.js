@@ -1,7 +1,8 @@
 /*
 *   User class
 *   Storage class for user data.
-*   Also manage connection between local, Discord and EvE sessions.
+*   Also manage connection between local, Discord and EvE.
+*   See authentication_flows.txt for a step-by-step description of authentication.
 */
 
 "use strict";
@@ -10,12 +11,12 @@
 
 // <============== Static requirements
 var Q      = require("q");
-var Error  = require(__dirname+"/utils/error.class.js");
 var url    = require("url");
 var crypto = require("crypto");
 var db     = require("json-db-lite");
+var Error  = require(__dirname+"/utils/error.class.js");
 var API    = require(__dirname+"/API/crestApi.class.js");
-var config = require("./utils/config.single.js");
+var config = require(__dirname+"/utils/config.single.js");
 
 
 /*
@@ -25,7 +26,7 @@ var User = function() {
     this.data = {
         // OAuth data exchanged with EvE SSO
         oauth: null,
-        // EvE ID and name of the user
+        // EvE ID and name of the character
         eveId: null,
         eveName: null,
         // Discord ID of the user
@@ -43,7 +44,7 @@ User.prototype.loadDiscordId = function(id) {
     if(typeof id == "undefined") throw new Error("Invalid Discord ID");
     // Set ID
     this.data.discordId = id;
-    // Load from database if it exists.
+    // Load from database if it exists
     var data = db.get("users."+this.data.discordId);
     if(data !== null) this.data = data;
     return this;
@@ -52,6 +53,7 @@ User.prototype.loadDiscordId = function(id) {
 /*
 *   save()
 *   Save user data in database.
+*   Return a promise.
 */
 User.prototype.save = function() {
     db.set("users."+this.data.discordId, this.data);
@@ -60,7 +62,7 @@ User.prototype.save = function() {
 
 /*
 *   isAuthenticated()
-*   Return weither the user was previously authenticated with EvE or not.
+*   Return weither the user was previously authenticated with EvE SSO or not.
 *   Return a boolean.
 */
 User.prototype.isAuthenticated = function() {
@@ -69,7 +71,8 @@ User.prototype.isAuthenticated = function() {
 
 /*
 *   getAllFits()
-*   Return user fittings as text.
+*   Return character fittings in JSON format.
+*   Return a promise.
 */
 User.prototype.getAllFits = function() {
     return (new API()).getCharFits(this.data.oauth, this.data.eveId);
@@ -78,7 +81,10 @@ User.prototype.getAllFits = function() {
 /*
 *   getRegisterLink()
 *   Return a link for user authentication (the user needs to visit the link at
-ù   least once for establishing connection between Discord and EvE IDs).
+*   least once for establishing connection between Discord and EvE IDs).
+*   "verifCode" is used to ensure that someone else cannot build the link and register
+*   under a Discord ID he/she does not own.
+*   Return the URL as string.
 */
 User.prototype.getRegisterLink = function() {
     // Generate and save verifCode using strong random generator
@@ -99,12 +105,15 @@ User.prototype.getRegisterLink = function() {
 /*
 *   checkRegisterLink()
 *   Check if the code provided is correct.
+*   Return a promise.
 */
 User.prototype.checkRegisterLink = function(code) {
     if(this.data.verifCode == code) {
+        // If correct, delete the code (one-time usage)
         this.data.verifCode = null;
         return Q();
     } else {
+        // If incorrect, throw an error.
         return Q.reject(new Error("invalid code", "Verification code is invalid.", 403));
     }
 };
@@ -113,11 +122,12 @@ User.prototype.checkRegisterLink = function(code) {
 *   initEvE()
 *   Initialise account by requesting and saving character ID and name from CREST.
 *   Also save OAuth data for future usage.
+*   Return a promise.
 */
 User.prototype.initEvE = function(oauth) {
     var self = this;
-    if(typeof oauth == "undefined") throw new Error("Invalid OAuth data");
     // Save OAuth data
+    if(typeof oauth == "undefined") throw new Error("Invalid OAuth data");
     self.data.oauth = oauth;
     // Request character data
     return (new API()).getCharacterData(oauth.access_token).then(function(data) {
