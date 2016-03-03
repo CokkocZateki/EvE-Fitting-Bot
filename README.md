@@ -7,7 +7,23 @@ EvE Fitting Bot is a bot for Discord able (at the moment) to retrive player fitt
 
 The project is more a Proof Of Concept made for EvE Online API Challenge (https://developers.eveonline.com/blog/article/the-eve-online-api-challenge). But it relies on pretty solid bases and could be easily improved up to a complete and useful bot.
 
-| ![alt text](http://img4.hostingpics.net/pics/302549efbhelp.png ".efb help") | ![alt text](http://img4.hostingpics.net/pics/465930efblist.png ".efb list") | ![alt text](http://img4.hostingpics.net/pics/581883efbshow.png ".efb show <id>") |
+|                        A few screenshots                        |
+|:---------------------------------------------------------------:|
+| ![efb help](http://img4.hostingpics.net/pics/302549efbhelp.png) |
+| ![efb list](http://img4.hostingpics.net/pics/465930efblist.png) |
+| ![efb show](http://img4.hostingpics.net/pics/581883efbshow.png) |
+
+
+## Example
+
+You can see a working example by joining https://discord.gg/0rZvLaS6EJ4DbUPO (you don't even need a Discord account for it !).
+
+For example, try to type `.efb help`.
+
+_If nothing happens, or for questions, you can PM "Shadow" from the above Discord server or drop a mail to `ryanis.shadow[dot]gmail.com`._
+
+
+-------------------------------------------------------
 
 
 ##  Install
@@ -40,15 +56,6 @@ info: Bot ready, serving in 14 channels.
 * It is strongly recommanded to use an HTTPS proxy in front of your server or switch to HTTPS (this last action probably requires code modifications).
 
 
-## Example
-
-You can see a working example by joining https://discord.gg/0rZvLaS6EJ4DbUPO (you don't even need a Discord account for it !).
-
-For example, try to type `.efb help`.
-
-_If nothing happens, or for questions, you can PM "Shadow" from the above Discord server or drop a mail to `ryanis.shadow[dot]gmail.com`._
-
-
 ## Configuration
 
 The list below describes briefly each configuration directive.
@@ -63,6 +70,9 @@ The list below describes briefly each configuration directive.
 * `command_prefix` : command prefix for triggerring Bot answer (defaults to ".efb").
 * `sso_host` : hostname of SSO server (that's currently "login.eveonline.com" and should not change).
 * `crest_host` : hostname of CREST server (that's currently "crest-tq.eveonline.com" and should not change).
+
+
+-------------------------------------------------------
 
 
 ## How registration works
@@ -88,6 +98,9 @@ Discord ID         | EvE Character ID | OAuth access\_token | OAuth refresh\_tok
 147810001268645011 | null             | null                | null                 | null              |
 
 
+-------------------------------------------------------
+
+
 ## Improvements
 
 Potential improvements (totally not a roadmap):
@@ -108,6 +121,9 @@ Potential improvements (totally not a roadmap):
 * Feel free to clone, copy or edit this project.
 * Bugs should be reported on GitHub using the pretty standard "issues" fonction.
 * Pull requests are welcomed.
+
+
+-------------------------------------------------------
 
 
 ## Copyright Notice
