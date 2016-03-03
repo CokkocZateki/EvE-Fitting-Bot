@@ -90,13 +90,13 @@ Discord ID         | EvE Character ID | OAuth access\_token | OAuth refresh\_tok
 
 Potential improvements (totally not a roadmap):
 * [x] Basic bot functionalities with `list` and `show` commands.
-* [ ] (Quality) Add automatic tests.
-* [ ] (Conformity) Change answer behaviour to remove mentions (Discord bots best practices).
-* [ ] (Ergonomy) Identify fittings by name instead of ID.
-* [ ] (Ergonomy) Improve formatting and readability.
-* [ ] (Ergonomy) Add an index page.
-* [ ] (Ergonomy) Automate Discord account creation.
-* [ ] (Fonctionality) Add more commands (example: ship info, map...).
+* [ ] Add automatic tests (quality).
+* [ ] Change answer behaviour to remove mentions (Discord bots best practices).
+* [ ] Identify fittings by name instead of ID (ergonomy).
+* [ ] Improve formatting and readability (ergonomy).
+* [ ] Add an index page (ergonomy).
+* [ ] Automate Discord account creation (ergonomy).
+* [ ] Add more commands like ship info, map... (fonctionality).
 
 
 ## Contributing
