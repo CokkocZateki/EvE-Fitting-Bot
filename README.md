@@ -5,7 +5,7 @@
 
 EvE Fitting Bot is a bot for Discord able (at the moment) to retrive player fittings and display them.
 
-The project is more a Proof Of Concept made for EvE Online API Challenge (https://developers.eveonline.com/blog/article/the-eve-online-api-challenge). But it relies on pretty solid bases and could be easily improved up to a complete and useful bot.
+The project is more a Proof Of Concept made for [EvE Online API Challenge](https://developers.eveonline.com/blog/article/the-eve-online-api-challenge). But it relies on pretty solid bases and could be easily improved up to a complete and useful bot.
 
 |                        A few screenshots                        |
 |:---------------------------------------------------------------:|
@@ -16,7 +16,7 @@ The project is more a Proof Of Concept made for EvE Online API Challenge (https:
 
 ## Example
 
-You can see a working example by joining https://discord.gg/0rZvLaS6EJ4DbUPO (you don't even need a Discord account for it !).
+You can see a working example by joining [this Discord server](https://discord.gg/0rZvLaS6EJ4DbUPO) (you don't even need a Discord account for it !).
 
 For example, try to type `.efb help`.
 
@@ -25,7 +25,7 @@ _If nothing happens, or for questions, you can PM "Shadow" from the above Discor
 
 ##  Install
 
-1. Create an account on https://developers.eveonline.com with the "CharacterFittingRead" permission.
+1. Create an account on [developers.eveonline.com](https://developers.eveonline.com) with the "CharacterFittingRead" permission.
   * Callback URL is `https://<your_host>/sso/auth_response/`.
 2. Install Node and NPM (for example, `apt-get install nodejs npm`).
 3. Make sure node version is at least **0.12.1** by running `node --version`.
