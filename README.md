@@ -10,7 +10,8 @@ The project is more a Proof Of Concept made for EvE Online API Challenge (https:
 
 ##  Install
 
-1. Create an account on https://developers.eveonline.com with the "CharacterFittingRead" permission. Callback URL is `https://<your_host>/sso/auth_response/`.
+1. Create an account on https://developers.eveonline.com with the "CharacterFittingRead" permission.
+   Callback URL is `https://<your_host>/sso/auth_response/`.
 2. Install Node and NPM (for example, `apt-get install nodejs npm`).
 3. Make sure node version is at least 0.12.1 by running `node --version`.
 4. Clone repository: `git clone https://github.com/ShadowRyanis/EvE-Fitting-Bot.git`.
@@ -22,14 +23,17 @@ The project is more a Proof Of Concept made for EvE Online API Challenge (https:
 
 ## Start
 
-Run `node ./src/start.script.js`.
-You should see an output similar to:
-```node ./src/start.script.js
+* Run `node ./src/start.script.js`.
+* You should see an output similar to:
+  ```
+node ./src/start.script.js
 info: HTTP server started on port 8080.
 info: Bot has loaded 4 command(s).
-info: Bot ready, serving in 14 channels.```
+info: Bot ready, serving in 14 channels.
+```
 
-* You may want to edit the above script if you are not using port 80.
+Remarks
+* You may want to edit start.script.js if you are not using port 80.
 * It is strongly recommanded to use an HTTPS proxy in front of your server or switch to HTTPS (this last action probably requires code modifications).
 
 
@@ -39,7 +43,7 @@ You can see a working example by joining https://discord.gg/0rZvLaS6EJ4DbUPO (yo
 
 For example, try to type `.efb help`.
 
-If nothing happens, or for questions, you can PM "Shadow" from the above Discord server or drop a mail to `ryanis.shadow[dot]gmail.com`.
+_If nothing happens, or for questions, you can PM "Shadow" from the above Discord server or drop a mail to `ryanis.shadow[dot]gmail.com`._
 
 
 ## Configuration
@@ -58,16 +62,37 @@ The list below describes briefly each configuration directive.
 * `crest_host` : hostname of CREST server (that's currently "crest-tq.eveonline.com" and should not change).
 
 
+## How registration works
+
+In order to retreive player fittings from CREST API, the application (the "Bot") needs to link Discord ID with EvE Online ID.
+This is done in the following way:
+* When a client issues a command requireing CREST access, the server checks in local database if his/her Discord ID is registered.
+* If not, a link is built and sent by private message. The link contains:
+  * The Discord ID of the user ;
+  * A verification code generated randomly and stored in cache on the server (to prevent someone else to register with this ID).
+* The user visits this link and is redirected to EvE SSO for authentication (standard OAuth protocol).
+* Once authenticated, the user is redirected to the server where OAuth credentials are verified.
+* Then, the server requests the associated character ID and links it with Discord ID.
+* OAuth tokens and both IDs are then saved in database for future usage.
+Next time, when the user requests a fitting, the server finds EvE ID from Discord ID and uses OAuth tokens to request CREST API.
+
+Basically, this is what database looks like:
+Discord ID         | EvE Character ID | OAuth access\_token | OAuth refresh\_token | Cached CREST data
+------------------ | ---------------- | ------------------- | -------------------- | -----------------
+147811543390617999 | 92130600         | N7HQx3HD...96TREEU0 | F7GTXZ3X...C96MMPOAA | _json-data_
+147811543390600000 | 92100000         | 96TREEU0...N7HQx3HD | 96MMPOAA...F7GTXZ3XC | null
+147810001268645011 | null             | null                | null                 | null
+
+
 ## Improvements
 
-Potential improvements (totally not a roadmap).
-* Add automatic tests.
-* Add more commands (example: ship info, map...).
-* Identify fittings by name instead of ID.
-* Improve formatting and readability.
-* Add an index page.
-* Automate Discord account creation.
-* ...
+Potential improvements (totally not a roadmap):
+[ ] Add automatic tests.
+[ ] Add more commands (example: ship info, map...).
+[ ] Identify fittings by name instead of ID.
+[ ] Improve formatting and readability.
+[ ] Add an index page.
+[ ] Automate Discord account creation.
 
 
 ## Contributing
