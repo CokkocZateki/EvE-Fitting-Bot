@@ -35,7 +35,17 @@ var Application = function() {
 Application.prototype.start = function(httpPort) {
     var self = this;
     Q().then(function() {
-        // Load configuraiton file
+        // Initilise logger
+        winston.loggers.add("main", {
+            transports: [
+                new (winston.transports.Console)({ level: "info",  colorize: true, name: "console" }),
+                new (winston.transports.File)   ({ level: 'info',  filename: __dirname+"/../log/info.log", name: 'info_file' }),
+                new (winston.transports.File)   ({ level: 'error', filename: __dirname+"/../log/error.log", name: 'error_file' })
+            ]
+        });
+        return Q();
+    }).then(function() {
+        // Load configuration file
         return config.load();
     }).then(function() {
         // Init and load database
@@ -51,16 +61,6 @@ Application.prototype.start = function(httpPort) {
         // Create and start HTTP server
         self.httpServer = new Server();
         self.httpServer.listen(httpPort);
-        return Q();
-    }).then(function() {
-        // Initilise logger
-        winston.loggers.add("main", {
-            transports: [
-                new (winston.transports.Console)({ level: "info",  colorize: true, name: "console" }),
-                new (winston.transports.File)   ({ level: 'info',  filename: __dirname+"/../log/info.log", name: 'info_file' }),
-                new (winston.transports.File)   ({ level: 'error', filename: __dirname+"/../log/error.log", name: 'error_file' })
-            ]
-        });
         return Q();
     }).then(function() {
         // Create and initialise bot
