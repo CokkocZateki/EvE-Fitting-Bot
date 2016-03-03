@@ -11,22 +11,26 @@ The project is more a Proof Of Concept made for EvE Online API Challenge (https:
 ##  Install
 
 1. Create an account on https://developers.eveonline.com with the "CharacterFittingRead" permission. Callback URL is `https://<your_host>/sso/auth_response/`.
-
 2. Install Node and NPM (for example, `apt-get install nodejs npm`).
-
 3. Make sure node version is at least 0.12.1 by running `node --version`.
+4. Clone repository: `git clone https://github.com/ShadowRyanis/EvE-Fitting-Bot.git`.
+5. Install dependencies using npm: `npm install`.
+6. Create a Discord account for the Bot and join your server(s) (the program does not do it alone at the moment).
+7. Make sure to setup configuration file (rename config.json.example to config.json and change values).
 
-4. Install application using npm: `npm install eve-fitting-bot`.
-
-5. Make sure to setup configuration file (rename config.json.example to config.json and change values).
-You will need to create the Bot account on Discord first (the program does not do it alone at the moment).
 
 
 ## Start
 
 Run `node ./src/start.script.js`.
+You should see an output similar to:
+```node ./src/start.script.js
+info: HTTP server started on port 8080.
+info: Bot has loaded 4 command(s).
+info: Bot ready, serving in 14 channels.```
 
-You may want to edit the above script if you are not using port 80 (it is strongly recommanded to use an HTTPS proxy in front of your server, which is what is done for developements, or switch to HTTPS server in the code).
+* You may want to edit the above script if you are not using port 80.
+* It is strongly recommanded to use an HTTPS proxy in front of your server or switch to HTTPS (this last action probably requires code modifications).
 
 
 ## Example
@@ -57,12 +61,19 @@ The list below describes briefly each configuration directive.
 ## Improvements
 
 Potential improvements (totally not a roadmap).
+* Add automatic tests.
 * Add more commands (example: ship info, map...).
 * Identify fittings by name instead of ID.
 * Improve formatting and readability.
 * Add an index page.
 * Automate Discord account creation.
 * ...
+
+
+## Contributing
+
+* Feel free to clone, copy or edit this project.
+* Pull requests are welcomed.
 
 
 ## Copyright Notice
