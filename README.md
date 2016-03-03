@@ -32,7 +32,7 @@ _If nothing happens, or for questions, you can PM "Shadow" from the above Discor
 4. Clone repository: `git clone https://github.com/ShadowRyanis/EvE-Fitting-Bot.git`.
 5. Install dependencies using npm: `npm install`.
 6. Create a Discord account for the Bot and join your server(s) (the program does not do it alone at the moment).
-7. Make sure to setup configuration file (rename config.json.example to config.json and change values).
+7. Make sure to setup configuration file (rename `config.json.example` to `config.json` and change values).
 
 
 ## Start
@@ -48,7 +48,7 @@ info: Bot has loaded 4 command(s).
 info: Bot ready, serving in 14 channels.
 ```
 
-* You may want to edit start.script.js if you are not using port 80.
+* You may want to edit `start.script.js` if you are not using port 80.
 * It is strongly recommanded to use an HTTPS proxy in front of your server or switch to HTTPS (this last action probably requires code modifications).
 
 
