@@ -22,8 +22,8 @@ You can see a working example by joining https://discord.gg/0rZvLaS6EJ4DbUPO (yo
 For example, try to type `.efb help`.
 
 _If nothing happens, or for questions, you can PM "Shadow" from the above Discord server or drop a mail to `ryanis.shadow[dot]gmail.com`._
-
-
+  
+  
 ## How to use it ?
 
 ###  Install
@@ -81,6 +81,7 @@ This is done in the following way:
 * Once authenticated, the user is redirected to the server where OAuth credentials are verified.
 * Then, the server requests the associated character ID and links it with Discord ID.
 * OAuth tokens and both IDs are then saved in database for future usage.
+* 
 Next time, when the user requests a fitting, the server finds EvE ID from Discord ID and uses OAuth tokens to request CREST API.
 
 Basically, this is what database looks like:
@@ -122,5 +123,5 @@ EVE Online and the EVE logo are the registered trademarks of CCP hf. All rights 
 All other trademarks are the property of their respective owners. EVE Online, the EVE logo, EVE and all associated logos and designs are the intellectual property of CCP hf
 All artwork, screenshots, characters, vehicles, storylines, world facts or other recognizable features of the intellectual property relating to these trademarks are likewise the intellectual property of CCP hf.
 
-CCP hf. has granted permission to use EVE Online and all associated logos and designs for promotional and information purposes on its website but does not endorse, and is not in any way affiliated with the developer.
+CCP hf. has granted permission to the developer to use EVE Online and all associated logos and designs for promotional and information purposes on its website but does not endorse, and is not in any way affiliated with the developer.
 CCP is in no way responsible for the content on or functioning of this website, nor can it be liable for any damage arising from the use of this website.
