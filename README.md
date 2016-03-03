@@ -11,7 +11,7 @@ The project is more a Proof Of Concept made for EvE Online API Challenge (https:
 ##  Install
 
 1. Create an account on https://developers.eveonline.com with the "CharacterFittingRead" permission.
-   Callback URL is `https://<your_host>/sso/auth_response/`.
+  * Callback URL is `https://<your_host>/sso/auth_response/`.
 2. Install Node and NPM (for example, `apt-get install nodejs npm`).
 3. Make sure node version is at least 0.12.1 by running `node --version`.
 4. Clone repository: `git clone https://github.com/ShadowRyanis/EvE-Fitting-Bot.git`.
@@ -23,16 +23,18 @@ The project is more a Proof Of Concept made for EvE Online API Challenge (https:
 
 ## Start
 
+Running the server is pretty simple:
 * Run `node ./src/start.script.js`.
 * You should see an output similar to:
-  ```
+
+```shell
 node ./src/start.script.js
 info: HTTP server started on port 8080.
 info: Bot has loaded 4 command(s).
 info: Bot ready, serving in 14 channels.
 ```
 
-Remarks
+Remarks:
 * You may want to edit start.script.js if you are not using port 80.
 * It is strongly recommanded to use an HTTPS proxy in front of your server or switch to HTTPS (this last action probably requires code modifications).
 
@@ -77,22 +79,24 @@ This is done in the following way:
 Next time, when the user requests a fitting, the server finds EvE ID from Discord ID and uses OAuth tokens to request CREST API.
 
 Basically, this is what database looks like:
-Discord ID         | EvE Character ID | OAuth access\_token | OAuth refresh\_token | Cached CREST data
------------------- | ---------------- | ------------------- | -------------------- | -----------------
-147811543390617999 | 92130600         | N7HQx3HD...96TREEU0 | F7GTXZ3X...C96MMPOAA | _json-data_
-147811543390600000 | 92100000         | 96TREEU0...N7HQx3HD | 96MMPOAA...F7GTXZ3XC | null
-147810001268645011 | null             | null                | null                 | null
+
+Discord ID         | EvE Character ID | OAuth access\_token | OAuth refresh\_token | Cached CREST data |
+------------------ | ---------------- | ------------------- | -------------------- | ----------------- |
+147811543390617999 | 92130600         | N7HQx3HD...96TREEU0 | F7GTXZ3X...C96MMPOAA | _json-data_       |
+147811543390600000 | 92100000         | 96TREEU0...N7HQx3HD | 96MMPOAA...F7GTXZ3XC | null              |
+147810001268645011 | null             | null                | null                 | null              |
 
 
 ## Improvements
 
 Potential improvements (totally not a roadmap):
-[ ] Add automatic tests.
-[ ] Add more commands (example: ship info, map...).
-[ ] Identify fittings by name instead of ID.
-[ ] Improve formatting and readability.
-[ ] Add an index page.
-[ ] Automate Discord account creation.
+* [x] Basic bot functionalities with `list` and `show` commands.
+* [ ] Add automatic tests.
+* [ ] Add more commands (example: ship info, map...).
+* [ ] Identify fittings by name instead of ID.
+* [ ] Improve formatting and readability.
+* [ ] Add an index page.
+* [ ] Automate Discord account creation.
 
 
 ## Contributing
