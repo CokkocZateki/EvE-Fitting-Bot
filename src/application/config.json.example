@@ -10,5 +10,7 @@
     "app_client_secret": "CHANGE_ME",
     "command_prefix": ".efb",
     "sso_host": "login.eveonline.com",
-    "crest_host": "crest-tq.eveonline.com"
+    "crest_host": "crest-tq.eveonline.com",
+    "https_ppk": null,
+    "https_cert": null
 }

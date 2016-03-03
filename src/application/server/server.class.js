@@ -9,6 +9,8 @@
 
 // <============== Static requirements
 var Q            = require("q");
+var fs           = require("fs");
+var https        = require("https");
 var Express      = require("express");
 var Compression  = require("compression");
 var session      = require("express-session");
@@ -80,8 +82,18 @@ Server.prototype.listen = function(port) {
     app.use(errorHandler);
     
     // Start listening
-    app.listen(port);
+    if(config.get("https_ppk") != null && config.get("https_cert") != null) {
+        // HTTPS server initialisation
+        https.createServer({
+            key: fs.readFileSync( config.get("https_ppk") ),
+            cert: fs.readFileSync( config.get("https_cert") )
+        }, app).listen(port);
+    } else {
+        // HTTP server initialisation
+        app.listen(port);
+    }
     winston.loggers.get("main").info("HTTP server started on port "+port+".");
+
 };
 
 

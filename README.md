@@ -49,7 +49,8 @@ info: Bot ready, serving in 14 channels.
 ```
 
 * You may want to edit `start.script.js` if you are not using port 80.
-* It is strongly recommanded to use an HTTPS proxy in front of your server or switch to HTTPS (this last action probably requires code modifications).
+* It is strongly recommanded to use an HTTPS proxy in front of your server or configure HTTPS (check "https\_ppk" and "https\_cert" configuration values).
+* **Warning**: HTTPS server has not been tested and may not work, at all.
 
 
 ## Configuration
@@ -66,6 +67,10 @@ The list below describes briefly each configuration directive.
 * `command_prefix` : command prefix for triggerring Bot answer (defaults to ".efb").
 * `sso_host` : hostname of SSO server (that's currently "login.eveonline.com" and should not change).
 * `crest_host` : hostname of CREST server (that's currently "crest-tq.eveonline.com" and should not change).
+* `https_ppk` : path to private key in .pem format (for HTTPS server).
+* `https_cert` : path to public certificate in .crt format(for HTTPS server).
+  Server will listen on HTTPS only if bothvalues are set. 
+  **Warning**: HTTPS server has not been tested and may not work, at all.
 
 
 ## How registration works
@@ -80,7 +85,7 @@ This is done in the following way:
 * Once authenticated, the user is redirected to the server where OAuth credentials are verified.
 * Then, the server requests the associated character ID and links it with Discord ID.
 * OAuth tokens and both IDs are then saved in database for future usage.
-* 
+
 Next time, when the user requests a fitting, the server finds EvE ID from Discord ID and uses OAuth tokens to request CREST API.
 
 Basically, this is what database looks like:
