@@ -44,7 +44,7 @@ HelpCommand.prototype.getHelp = function(message) {
         "`" + this.bot.msgPrefix + " help`" + " - show this message,",
         "`" + this.bot.msgPrefix + " ping`" + " - reply \"pong\" (test command),",
         "`" + this.bot.msgPrefix + " list`" + " - list all character fits,",
-        "`" + this.bot.msgPrefix + " show <id>`" + " - return @fit_name contents.",
+        "`" + this.bot.msgPrefix + " show <id>`" + " - return fit contents by @id.",
         ].join("\n");
 };
 

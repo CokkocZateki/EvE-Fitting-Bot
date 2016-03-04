@@ -3,7 +3,7 @@
 
 ## Description
 
-EvE Fitting Bot is a bot for Discord able (at the moment) to retrive player fittings and display them.
+EvE Fitting Bot is a bot for [Discord](https://discordapp.com/) able (at the moment) to retrive player fittings and display them.
 
 The project is more a Proof Of Concept made for [EvE Online API Challenge](https://developers.eveonline.com/blog/article/the-eve-online-api-challenge). But it relies on pretty solid bases and could be easily improved up to a complete and useful bot.
 
@@ -20,7 +20,7 @@ You can see a working example by joining [this Discord server](https://discord.g
 
 For example, try to type `.efb help`.
 
-_If nothing happens, or for questions, you can PM "Shadow" from the above Discord server or drop a mail to `ryanis.shadow[dot]gmail.com`._
+_If nothing happens, or for questions, you can send a private message to "Shadow" from the above Discord server or drop a mail to `ryanis.shadow[at]gmail.com`._
 
 
 ##  Install

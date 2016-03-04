@@ -26,8 +26,8 @@ var CrestAPI = function() {
 };
 
 /*
-*   getOAtuthState()
-*   Return the Oauth state parameter based on a clientSecret.
+*   getCharacterData()
+*   Request and return the EvE character data (ID, name, etc.).
 *   Attention, this method does not cache results (as character id is not known).
 *   Return a promise.
 */

@@ -23,10 +23,10 @@ var SSO = function() {
 };
 
 /*
-*   getOAtuthState()
+*   getOAuthState()
 *   Return the Oauth state parameter based on a clientSecret (as string).
 */
-SSO.prototype.getOAtuthState = function(clientSecret, state, code) {
+SSO.prototype.getOAuthState = function(clientSecret, state, code) {
     var salt = config.get("hash_salt") || "re6gv56zsvg6vgzspok";
     var hash = crypto.createHmac("sha512", salt);
     return hash.update(clientSecret).digest("hex");
@@ -39,7 +39,7 @@ SSO.prototype.getOAtuthState = function(clientSecret, state, code) {
 */
 SSO.prototype.getAuthUrl = function(clientSecret) {
     // First, hash the clietn secret because it will be leaked in the URL
-    var secret = this.getOAtuthState(clientSecret);
+    var secret = this.getOAuthState(clientSecret);
     // Then build the URL
     return url.format({
         protocol:   "https",
@@ -62,7 +62,7 @@ SSO.prototype.getAuthUrl = function(clientSecret) {
 */
 SSO.prototype.validate = function(clientSecret, state, code) {
     // 1 - Validate state parameter
-    if(state != this.getOAtuthState(clientSecret)) {
+    if(state != this.getOAuthState(clientSecret)) {
         throw new Error("Invalid state parameter for this user.");
     }
     // 2 - Validate code token
